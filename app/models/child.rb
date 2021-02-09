@@ -4,8 +4,14 @@ class Child < ApplicationRecord
 
     validates_presence_of :first_name, :last_name
 
-    # validates :first_name, presence: true
-    # validates :last_name, presence: true
+    scope :alphabetical, -> { order(:last_name, :first_name) }
+    scope :active, -> { where(active: true) }
+
+
+    def name
+        return "#{self.first_name} #{self.last_name}"
+    end
+
 
 
 end
